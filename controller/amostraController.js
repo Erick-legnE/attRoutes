@@ -18,11 +18,15 @@ export function listarAmstras(req,res){
 
 export function buscarAmostra(req,res){
     const indice = Number(req.params.indice);
-    res.json(amostras[indice]);
+    const amostras = repository.listar();
     
-    if (!amostra){
+    
+    if (amostras[indice] === undefined){
         return res.status(404).json({mensagem: 'Amostra não encontrada.'})
+    }else{
+        res.json(amostras[indice]);
     }
+    
 }
 
 export function excluirAmostra(req,res){
